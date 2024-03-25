@@ -6,6 +6,9 @@ Class {
 
 { #category : #example }
 AppGeneratorExample class >> generateWindowsExample [
+
+	<script: 'self generateWindowsExample'>
+
 	AppGeneratorWindowsGenerator new
 		properties: {
 			#AppName -> 'AppGeneratorExample'.
@@ -16,7 +19,9 @@ AppGeneratorExample class >> generateWindowsExample [
 			#CommandLineHandler -> 'appGeneratorExample'.
 			#IconFile -> self iconFile.
 			#CompanyName -> 'Pharo Consortium'.
-			#LegalCopyright -> 'Copyright \251 https://www.pharo.org 2023\0'
+			#LegalCopyright -> 'Copyright \251 https://www.pharo.org 2023\0'.
+			#VMIncludeZipFile -> 'PharoVM-10.1.1-32b2be55-Windows-x86_64-include.zip'.
+			#VMZipFile -> 'PharoVM-10.1.1-32b2be55-Windows-x86_64-bin.zip' 
 		} asDictionary;
 		outputDirectory: FileLocator workingDirectory / 'appGeneratorExample' / 'build';
 		generate

@@ -48,7 +48,8 @@ AppGeneratorAbstractGenerator >> fillWithDefaults [
 
 	properties at: #CommandLineHandler ifAbsentPut: 'appGeneratorExample'.
 
-	properties at: #VMVersion ifAbsentPut: 'latest10'.	
+	properties at: #VMIncludeZipFile ifAbsentPut: 'latest10.zip'.	
+	properties at: #VMZipFile ifAbsentPut: 'latest10.zip'.	
 
 ]
 
