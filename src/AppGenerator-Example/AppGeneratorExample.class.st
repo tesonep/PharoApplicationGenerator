@@ -4,25 +4,25 @@ Class {
 	#category : #'AppGenerator-Example'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #example }
 AppGeneratorExample class >> generateWindowsExample [
 	AppGeneratorWindowsGenerator new
 		properties: {
-			#AppName -> 'ATest'.
-			#InfoString -> 'A Test'.
-			#BundleIdentifier -> 'org.pharo.testApp'.
+			#AppName -> 'AppGeneratorExample'.
+			#InfoString -> 'An Example of an App Generator'.
+			#BundleIdentifier -> 'org.pharo.appGeneratorExample'.
 			#ShortVersion -> '1.0.0'.
 			#DisplayName -> 'TestApp'.
-			#CommandLineHandler -> 'embeddedExample'.
+			#CommandLineHandler -> 'appGeneratorExample'.
 			#IconFile -> self iconFile.
 			#CompanyName -> 'Pharo Consortium'.
 			#LegalCopyright -> 'Copyright \251 https://www.pharo.org 2023\0'
 		} asDictionary;
-		outputDirectory: FileLocator workingDirectory / 'testApp' / 'build';
+		outputDirectory: FileLocator workingDirectory / 'appGeneratorExample' / 'build';
 		generate
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #resources }
 AppGeneratorExample class >> iconFile [
 		
 	^ AppGeneratorAbstractGenerator repositoryLocation / 'exampleResources' / 'ballon.ico'

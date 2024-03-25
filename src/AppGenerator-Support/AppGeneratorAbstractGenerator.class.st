@@ -46,7 +46,7 @@ AppGeneratorAbstractGenerator >> fillWithDefaults [
 	properties at: #ImageDir ifAbsentPut: (properties at: #ImageFile) resolve parent fullName.
 	properties at: #ChangesName ifAbsentPut: ((properties at: #ImageFile) resolve withExtension: 'changes') basename.
 
-	properties at: #CommandLineHandler ifAbsentPut: 'embeddedExample'.
+	properties at: #CommandLineHandler ifAbsentPut: 'appGeneratorExample'.
 
 	properties at: #VMVersion ifAbsentPut: 'latest10'.	
 

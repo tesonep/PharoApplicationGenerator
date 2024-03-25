@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 AppGeneratorCommandLineHandler class >> commandName [
 
-	^ 'embeddedExample'
+	^ 'appGeneratorExample'
 ]
 
 { #category : #activation }
