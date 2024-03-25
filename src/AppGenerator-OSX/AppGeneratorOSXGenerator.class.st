@@ -1,0 +1,86 @@
+Class {
+	#name : #AppGeneratorOSXGenerator,
+	#superclass : #AppGeneratorAbstractGenerator,
+	#category : #'AppGenerator-OSX'
+}
+
+{ #category : #copying }
+AppGeneratorOSXGenerator >> copyIconSetIn: appDirectory [ 
+	
+	(appDirectory / 'Contents' / 'Resources') ensureCreateDirectory.
+	
+	(appDirectory / 'Contents' / 'Resources' / 'icon.icns') ensureDelete.
+	self iconSetFile copyTo: (appDirectory / 'Contents' / 'Resources' / 'icon.icns').
+	
+	"Copying in the Build directory for the installer icon"
+	(outputDirectory / 'installer.icns') ensureDelete.
+	self iconSetFile copyTo: (outputDirectory / 'installer.icns')
+	
+]
+
+{ #category : #copying }
+AppGeneratorOSXGenerator >> copyInstallerBackground [
+	
+	| dst |
+	dst := outputDirectory / 'installer-background.png'.	
+	dst ensureDelete.
+	(properties at: #InstallerBackgroundFile) copyTo: dst 
+]
+
+{ #category : #utilities }
+AppGeneratorOSXGenerator >> fillWithDefaults [
+	
+	super fillWithDefaults.
+	
+	properties at: #BundleIdentifier ifAbsentPut: 'org.pharo.example'.	
+	properties at: #IconSetFile ifAbsentPut: (self templateDirectory / 'icon.icns' ).
+	properties at: #InstallerBackgroundFile ifAbsentPut: (self templateDirectory / 'installer-background.png').
+	
+]
+
+{ #category : #translating }
+AppGeneratorOSXGenerator >> generate [
+	
+	| appDirectory |
+	
+	super generate.
+
+	"Build App directory"
+	appDirectory := outputDirectory / (self appName , '.app').
+	appDirectory ensureCreateDirectory.
+		
+	self copyIconSetIn: appDirectory. 
+	self generatePListIn: appDirectory.
+	self copyInstallerBackground.
+	
+	self generateBuildScript.
+]
+
+{ #category : #generating }
+AppGeneratorOSXGenerator >> generateBuildScript [
+
+	self
+		copyTemplate: self templateDirectory / 'build.sh.template'
+		to: outputDirectory / 'build.sh'
+]
+
+{ #category : #'as yet unclassified' }
+AppGeneratorOSXGenerator >> generatePListIn: appDirectory [
+
+	(appDirectory / 'Contents') ensureCreateDirectory.
+	self
+		copyTemplate: self templateDirectory / 'Info.plist.template'
+		to: appDirectory / 'Contents' / 'Info.plist'
+]
+
+{ #category : #accessing }
+AppGeneratorOSXGenerator >> iconSetFile [
+	
+	^ properties at: #IconSetFile 
+]
+
+{ #category : #accessing }
+AppGeneratorOSXGenerator >> platformName [
+
+	^ 'Darwin'
+]
