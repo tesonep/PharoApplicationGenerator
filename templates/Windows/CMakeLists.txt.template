@@ -76,8 +76,6 @@ add_custom_command(
 	COMMAND $\{CMAKE_COMMAND} -E copy $\{BUILD_ImageDir}/$\{BUILD_ChangesName} $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/embedded.changes
 	COMMAND $\{CMAKE_COMMAND} -E copy $\{BUILD_ImageDir}/*.sources $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/
 	WORKING_DIRECTORY $\{CMAKE_CURRENT_BINARY_DIR}/build/resources
-	DEPENDS
-		$\{BUILD_ImageDir}/$\{BUILD_ImageName}
 	COMMENT "Copying image to embed")
 
 #
