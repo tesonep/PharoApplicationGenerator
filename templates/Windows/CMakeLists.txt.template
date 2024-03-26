@@ -78,7 +78,6 @@ add_custom_command(
 	WORKING_DIRECTORY $\{CMAKE_CURRENT_BINARY_DIR}/build/resources
 	DEPENDS
 		$\{BUILD_ImageDir}/$\{BUILD_ImageName}
-		$\{BUILD_ImageDir}/$\{BUILD_ChangesName}
 	COMMENT "Copying image to embed")
 
 #
