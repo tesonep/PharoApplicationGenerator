@@ -1,0 +1,17 @@
+Class {
+	#name : #BaselineOfApplicationGenerator,
+	#superclass : #BaselineOf,
+	#category : #BaselineOfApplicationGenerator
+}
+
+{ #category : #baselines }
+BaselineOfApplicationGenerator >> baseline: spec [
+	<baseline>
+
+	spec for: #common do: [ 
+		spec 
+			package: 'AppGenerator-Support';
+			package: 'AppGenerator-Example';
+			package: 'AppGenerator-OSX';
+			package: 'AppGenerator-Windows' ]
+]
