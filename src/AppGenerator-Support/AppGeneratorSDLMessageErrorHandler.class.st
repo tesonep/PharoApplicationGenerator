@@ -8,8 +8,8 @@ Class {
 AppGeneratorSDLMessageErrorHandler >> unhandledError: anError [
 
 	SDL2
-		showSimpleMessageBox: anError messageText utf8Encoded
-		title: 'An Error has occured...' utf8Encoded 
+		showSimpleMessageBox: anError messageText
+		title: 'An Error has occured...' 
 		flags: 16r00000010
 		window: ExternalAddress null.
 	

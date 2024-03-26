@@ -14,7 +14,8 @@ AppGeneratorCommandLineHandler class >> commandName [
 AppGeneratorCommandLineHandler >> activate [
 
 	OSWindowDriver current startUp: true.
-
+	
+	AppGeneratorSupport errorHandler: AppGeneratorSDLMessageErrorHandler new.
 	SDL2AthensDrawingExample new open.
 	
 ]
