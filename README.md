@@ -35,3 +35,26 @@ These examples, are basic and can be extended to include specific behavior of th
 # Examples
 In this project there is a simple example in the class AppGeneratorExample. 
 For a deeper example for a whole application, you can check the usage in the Takuzu game (https://github.com/tesonep/Takuzu)
+
+# Dependencies
+
+## Windows
+
+The whole process is implemented using CMake and Cygwin. As it compiles a new executable some dependencies are needed:
+
+- A working Pharo
+- CMake (at least version 2.8.4)
+- CLang
+- Binutils (make and friends)
+- wget
+- unzip
+
+## MacOS
+
+The process uses some external tools, you should have installed:
+
+- A working Pharo
+- XCode
+- Brew
+- ImageMagick from Brew
+- create-dmg from Brew
