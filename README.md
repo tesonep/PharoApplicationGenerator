@@ -1,3 +1,5 @@
+# Pharo Application Generator
+
 This project provides a tool to generate the scripts and metadata for packaging application.
 In the current state, it works for Windows and MacOS.
 For the supported platforms it packages the VM, image and resources generating an executable file.
