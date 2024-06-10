@@ -27,7 +27,11 @@ cp -f $IMAGE_DIR/$IMAGE_NAME $APP_BUNDLE/Contents/Resources/
 #Downloading Pharo VM
 if [ ! -d "./pharo-vm" ] 
 then
-	curl get.pharo.org/64/vmLatest120 | bash
+	mkdir pharo-vm
+    pushd pharo-vm
+    curl --output vm.zip https://files.pharo.org/vm/pharo-spur64-headless/$(uname -s)-$(uname -m)/{VMZipFile}
+    unzip vm.zip 
+    popd
 fi
 
 
