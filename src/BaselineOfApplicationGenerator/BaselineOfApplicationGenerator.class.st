@@ -13,5 +13,9 @@ BaselineOfApplicationGenerator >> baseline: spec [
 			package: 'AppGenerator-Support';
 			package: 'AppGenerator-Example';
 			package: 'AppGenerator-OSX';
-			package: 'AppGenerator-Windows' ]
+			package: 'AppGenerator-Windows' ].
+
+	spec
+		for: #'pharo11.x'
+		do: [ spec package: 'AppGenerator-Support-P11' ]
 ]
