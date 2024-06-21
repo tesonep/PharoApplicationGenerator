@@ -1,6 +1,6 @@
 Extension { #name : #SDLOSXPlatform }
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : #'*AppGenerator-Support-P11' }
 SDLOSXPlatform >> initPlatformSpecific [
 	| sel cls sharedApplication |
 
