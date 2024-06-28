@@ -1,6 +1,6 @@
-Extension { #name : #SmalltalkImage }
+Extension { #name : 'SmalltalkImage' }
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 SmalltalkImage >> snapshot: save andQuit: quit [
 	
 	(SessionManager default currentSession isReadOnlyAccessMode and: [ save ])

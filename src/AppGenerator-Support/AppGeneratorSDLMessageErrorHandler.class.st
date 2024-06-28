@@ -1,10 +1,11 @@
 Class {
-	#name : #AppGeneratorSDLMessageErrorHandler,
-	#superclass : #Object,
-	#category : #'AppGenerator-Support'
+	#name : 'AppGeneratorSDLMessageErrorHandler',
+	#superclass : 'Object',
+	#category : 'AppGenerator-Support',
+	#package : 'AppGenerator-Support'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AppGeneratorSDLMessageErrorHandler >> unhandledError: anError [
 
 	SDL2

@@ -1,6 +1,6 @@
-Extension { #name : #OSWorldRenderer }
+Extension { #name : 'OSWorldRenderer' }
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 OSWorldRenderer >> doActivate [
 
 	| attributes initialExtent |
@@ -33,7 +33,7 @@ OSWorldRenderer >> doActivate [
 	OSWindowClipboard new beDefault.
 ]
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 OSWorldRenderer >> windowTitle [
 
 	^ AppGeneratorSupport windowTitle

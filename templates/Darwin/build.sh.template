@@ -9,6 +9,7 @@ CHANGES_NAME={ChangesName}
 APP_NAME={AppName}
 APP_BUNDLE=$APP_NAME.app
 DMG_NAME=$APP_NAME-Installer.dmg
+VM_TYPE={VMType}
 
 # To create the DMG we need the create-dmg tool, you can get it from brew
 # brew install create-dmg
@@ -29,12 +30,14 @@ if [ ! -d "./pharo-vm" ]
 then
 	mkdir pharo-vm
     pushd pharo-vm
-    curl --output vm.zip https://files.pharo.org/vm/pharo-spur64-headless/$(uname -s)-$(uname -m)/{VMZipFile}
+    if [ $VM_TYPE -eq "headless" ]; then
+      curl --output vm.zip https://files.pharo.org/vm/pharo-spur64-headless/$(uname -s)-$(uname -m)/{VMZipFile}
+    else
+      curl --output vm.zip https://files.pharo.org/vm/pharo-spur64/$(uname -s)-$(uname -m)/stable10.zip
+    fi
     unzip vm.zip 
     popd
 fi
-
-
 
 mkdir -p $APP_BUNDLE/Contents/MacOS
 cp -Rf pharo-vm/Pharo.app/Contents/MacOS/* $APP_BUNDLE/Contents/MacOS/
