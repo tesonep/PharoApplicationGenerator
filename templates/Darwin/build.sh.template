@@ -30,7 +30,7 @@ if [ ! -d "./pharo-vm" ]
 then
 	mkdir pharo-vm
     pushd pharo-vm
-    if [ ${VM_TYPE,,} -eq "headless" ]; then
+    if [ $VM_TYPE -eq "headless" ]; then
       curl --output vm.zip https://files.pharo.org/vm/pharo-spur64-headless/$(uname -s)-$(uname -m)/{VMZipFile}
     else
       curl --output vm.zip https://files.pharo.org/vm/pharo-spur64/$(uname -s)-$(uname -m)/stable10.zip
