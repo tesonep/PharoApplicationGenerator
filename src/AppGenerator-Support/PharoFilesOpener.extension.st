@@ -1,6 +1,6 @@
-Extension { #name : #PharoFilesOpener }
+Extension { #name : 'PharoFilesOpener' }
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 PharoFilesOpener >> informCannotLocateSources [
 	| msg |
 	
@@ -16,7 +16,7 @@ Make sure the sources file is not an Alias.' ].
 	self inform: msg withSourceRef: self sourcesName
 ]
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 PharoFilesOpener >> informProblemInChanges: msg [
 
 	"If I am embedded I have no sources! "
@@ -25,7 +25,7 @@ PharoFilesOpener >> informProblemInChanges: msg [
 	self inform: msg withChangesRef: self changesName
 ]
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 PharoFilesOpener >> shouldInformAboutReadOnlyChanges [
 
 	"If I am embedded I have no sources! "

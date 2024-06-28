@@ -1,6 +1,6 @@
-Extension { #name : #OmFileStore }
+Extension { #name : 'OmFileStore' }
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 OmFileStore >> flushEntryBuffer [
 
 	self critical: [

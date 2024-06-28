@@ -1,26 +1,27 @@
 Class {
-	#name : #AppGeneratorAbstractGenerator,
-	#superclass : #Object,
+	#name : 'AppGeneratorAbstractGenerator',
+	#superclass : 'Object',
 	#instVars : [
 		'properties',
 		'outputDirectory'
 	],
-	#category : #'AppGenerator-Support'
+	#category : 'AppGenerator-Support',
+	#package : 'AppGenerator-Support'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 AppGeneratorAbstractGenerator class >> repositoryLocation [
 
 	^ (IceRepository repositoryNamed: 'PharoApplicationGenerator') location
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AppGeneratorAbstractGenerator >> appName [
 	
 	^ properties at: #AppName
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 AppGeneratorAbstractGenerator >> copyTemplate: inputTemplate to: outputFile [
 
 	| generatedContent template |
@@ -31,7 +32,7 @@ AppGeneratorAbstractGenerator >> copyTemplate: inputTemplate to: outputFile [
 		s nextPutAll: generatedContent ]
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 AppGeneratorAbstractGenerator >> fillWithDefaults [
 	
 	properties at: #AppName ifAbsentPut: 'MyApp'.
@@ -49,11 +50,12 @@ AppGeneratorAbstractGenerator >> fillWithDefaults [
 	properties at: #CommandLineHandler ifAbsentPut: 'appGeneratorExample'.
 
 	properties at: #VMIncludeZipFile ifAbsentPut: 'latest10.zip'.	
-	properties at: #VMZipFile ifAbsentPut: 'latest10.zip'.	
+	properties at: #VMZipFile ifAbsentPut: 'latest10.zip'.
+	properties at: #VMType ifAbsentPut: 'Spur'
 
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 AppGeneratorAbstractGenerator >> generate [
 
 	self fillWithDefaults.
@@ -62,19 +64,19 @@ AppGeneratorAbstractGenerator >> generate [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AppGeneratorAbstractGenerator >> outputDirectory: aFileReference [ 
 	
 	outputDirectory := aFileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AppGeneratorAbstractGenerator >> properties: aCollection [ 
 	
 	properties := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AppGeneratorAbstractGenerator >> templateDirectory [
 	
 	^ self class repositoryLocation / 'templates' / self platformName

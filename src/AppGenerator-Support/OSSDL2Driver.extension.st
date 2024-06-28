@@ -1,6 +1,6 @@
-Extension { #name : #OSSDL2Driver }
+Extension { #name : 'OSSDL2Driver' }
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 OSSDL2Driver >> processEvent: sdlEvent [
 	| mappedEvent |
 

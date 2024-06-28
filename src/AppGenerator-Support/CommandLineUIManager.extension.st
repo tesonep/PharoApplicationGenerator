@@ -1,6 +1,6 @@
-Extension { #name : #CommandLineUIManager }
+Extension { #name : 'CommandLineUIManager' }
 
-{ #category : #'*AppGenerator-Support' }
+{ #category : '*AppGenerator-Support' }
 CommandLineUIManager >> unhandledErrorDefaultAction: anException [
 
 
