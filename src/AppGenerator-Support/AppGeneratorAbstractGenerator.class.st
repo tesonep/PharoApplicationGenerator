@@ -51,7 +51,7 @@ AppGeneratorAbstractGenerator >> fillWithDefaults [
 
 	properties at: #VMIncludeZipFile ifAbsentPut: 'latest10.zip'.	
 	properties at: #VMZipFile ifAbsentPut: 'latest10.zip'.
-	properties at: #VMType ifAbsentPut: 'Spur'
+	properties at: #VMType ifAbsentPut: 'headless'
 
 ]
 
