@@ -76,7 +76,18 @@ AppGeneratorWindowsGenerator >> generate [
 	self copyIncludes.
 	self copySources.
 	self generateCMakeScript.
-	self generateInstallerScript
+	
+	self generateArtifactScript.
+]
+
+{ #category : 'translating' }
+AppGeneratorWindowsGenerator >> generateArtifactScript [
+
+	(properties at: #GeneratedArtifact) = #installer ifTrue: [
+		^ self generateInstallerScript ].
+
+	(properties at: #GeneratedArtifact) = #zip ifTrue: [
+		^ self generateZipScript ]
 ]
 
 { #category : 'generation' }
@@ -93,6 +104,14 @@ AppGeneratorWindowsGenerator >> generateInstallerScript [
 	self
 		copyTemplate: self templateDirectory / 'buildWindowsPackage.ps1.template'
 		to: outputDirectory / 'buildWindowsPackage.ps1'
+]
+
+{ #category : 'generation' }
+AppGeneratorWindowsGenerator >> generateZipScript [
+
+	self
+		copyTemplate: self templateDirectory / 'buildZip.ps1.template'
+		to: outputDirectory / 'buildZip.ps1'
 ]
 
 { #category : 'accessing' }
