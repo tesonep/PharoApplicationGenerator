@@ -1,11 +1,10 @@
 Class {
-	#name : 'BaselineOfApplicationGenerator',
-	#superclass : 'BaselineOf',
-	#category : 'BaselineOfApplicationGenerator',
-	#package : 'BaselineOfApplicationGenerator'
+	#name : #BaselineOfApplicationGenerator,
+	#superclass : #BaselineOf,
+	#category : #BaselineOfApplicationGenerator
 }
 
-{ #category : 'baselines' }
+{ #category : #baselines }
 BaselineOfApplicationGenerator >> baseline: spec [
 	<baseline>
 
@@ -19,7 +18,7 @@ BaselineOfApplicationGenerator >> baseline: spec [
 			
 			group: 'Core' with: #('AppGenerator' 'AppGenerator-Support' 'AppGenerator-Windows' 'AppGenerator-OSX');
 			group: 'Support' with: #('AppGenerator-Support');
-			group: 'default' with: #('Core' 'Support') ].
+			group: 'default' with: #('Core' 'Support' 'AppGenerator-Example') ].
 
 	spec
 		for: #'pharo11.x'
