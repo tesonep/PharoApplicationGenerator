@@ -1,11 +1,11 @@
-Extension { #name : #SDL2AthensExample }
+Extension { #name : 'SDL2AthensExample' }
 
-{ #category : #'*AppGenerator-Example' }
+{ #category : '*AppGenerator-Example' }
 SDL2AthensExample >> defaultExtent [
 	^ 700@500
 ]
 
-{ #category : #'*AppGenerator-Example' }
+{ #category : '*AppGenerator-Example' }
 SDL2AthensExample >> open [
 	| attrs |
 	attrs := OSWindowAttributes new.

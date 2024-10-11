@@ -1,10 +1,11 @@
 Class {
-	#name : #AppGeneratorExample,
-	#superclass : #Object,
-	#category : #'AppGenerator-Example'
+	#name : 'AppGeneratorExample',
+	#superclass : 'Object',
+	#category : 'AppGenerator-Example',
+	#package : 'AppGenerator-Example'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 AppGeneratorExample class >> generateWindowsExample [
 
 	<script: 'self generateWindowsExample'>
@@ -27,7 +28,7 @@ AppGeneratorExample class >> generateWindowsExample [
 		generate
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 AppGeneratorExample class >> iconFile [
 		
 	^ AppGeneratorAbstractGenerator repositoryLocation / 'exampleResources' / 'ballon.ico'

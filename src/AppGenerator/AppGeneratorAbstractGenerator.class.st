@@ -5,8 +5,9 @@ Class {
 		'properties',
 		'outputDirectory'
 	],
-	#category : 'AppGenerator-Support',
-	#package : 'AppGenerator-Support'
+	#category : 'AppGenerator-Core',
+	#package : 'AppGenerator',
+	#tag : 'Core'
 }
 
 { #category : 'private' }

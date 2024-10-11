@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfApplicationGenerator }
+Package { #name : 'BaselineOfApplicationGenerator' }

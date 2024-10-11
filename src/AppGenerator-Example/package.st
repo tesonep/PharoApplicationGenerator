@@ -1,1 +1,1 @@
-Package { #name : #'AppGenerator-Example' }
+Package { #name : 'AppGenerator-Example' }

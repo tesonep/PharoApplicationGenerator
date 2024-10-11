@@ -1,6 +1,6 @@
-Extension { #name : #SDL2AthensDrawingExample }
+Extension { #name : 'SDL2AthensDrawingExample' }
 
-{ #category : #'*AppGenerator-Example' }
+{ #category : '*AppGenerator-Example' }
 SDL2AthensDrawingExample >> redraw [
 	| font |
 	self clearSurface.

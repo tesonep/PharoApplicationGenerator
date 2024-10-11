@@ -1,23 +1,24 @@
 Class {
-	#name : #AppGeneratorWindowsGenerator,
-	#superclass : #AppGeneratorAbstractGenerator,
-	#category : #'AppGenerator-Windows'
+	#name : 'AppGeneratorWindowsGenerator',
+	#superclass : 'AppGeneratorAbstractGenerator',
+	#category : 'AppGenerator-Windows',
+	#package : 'AppGenerator-Windows'
 }
 
-{ #category : #copying }
+{ #category : 'copying' }
 AppGeneratorWindowsGenerator >> copy: source to: dest [
 
 	dest ensureDelete.
 	source copyTo: dest
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 AppGeneratorWindowsGenerator >> copyIcon [
 
 	self copy: self iconFile to: outputDirectory / 'icon.ico'
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 AppGeneratorWindowsGenerator >> copyIncludes [
 
 	| includeDir |
@@ -27,7 +28,7 @@ AppGeneratorWindowsGenerator >> copyIncludes [
 	self copy: self templateDirectory / 'include' / 'resources.h' to: includeDir / 'resources.h'.
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 AppGeneratorWindowsGenerator >> copySources [
 
 	| srcDir templateSrc |
@@ -49,7 +50,7 @@ AppGeneratorWindowsGenerator >> copySources [
 		to: srcDir / 'main.c'
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 AppGeneratorWindowsGenerator >> fillWithDefaults [
 	
 	super fillWithDefaults.
@@ -61,10 +62,12 @@ AppGeneratorWindowsGenerator >> fillWithDefaults [
 	properties at: #CompanyName ifAbsentPut: 'MyCompany'.
 	properties at: #LegalCopyright ifAbsentPut: 'My Company Copyright'.
 	
+	properties at: #GeneratedArtifact ifAbsentPut: #installer.
+	
 	
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 AppGeneratorWindowsGenerator >> generate [
 	
 	super generate.
@@ -76,7 +79,7 @@ AppGeneratorWindowsGenerator >> generate [
 	self generateInstallerScript
 ]
 
-{ #category : #generation }
+{ #category : 'generation' }
 AppGeneratorWindowsGenerator >> generateCMakeScript [
 
 	self
@@ -84,7 +87,7 @@ AppGeneratorWindowsGenerator >> generateCMakeScript [
 		to: outputDirectory / 'CMakeLists.txt'
 ]
 
-{ #category : #generation }
+{ #category : 'generation' }
 AppGeneratorWindowsGenerator >> generateInstallerScript [
 
 	self
@@ -92,13 +95,13 @@ AppGeneratorWindowsGenerator >> generateInstallerScript [
 		to: outputDirectory / 'buildWindowsPackage.ps1'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AppGeneratorWindowsGenerator >> iconFile [
 	
 	^ properties at: #IconFile 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AppGeneratorWindowsGenerator >> platformName [
 	
 	^ 'Windows'

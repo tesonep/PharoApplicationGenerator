@@ -1,1 +1,1 @@
-Package { #name : #'AppGenerator-Windows' }
+Package { #name : 'AppGenerator-Windows' }
