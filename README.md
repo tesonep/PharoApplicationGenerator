@@ -36,6 +36,15 @@ These examples, are basic and can be extended to include specific behavior of th
 In this project there is a simple example in the class AppGeneratorExample. 
 For a deeper example for a whole application, you can check the usage in the Takuzu game (https://github.com/tesonep/Takuzu)
 
+# Installing
+
+```smalltalk
+Metacello new
+	baseline: 'ApplicationGenerator';
+	repository: 'github://tesonep/PharoApplicationGenerator/src';
+	load
+```
+
 # Dependencies
 
 ## Windows
