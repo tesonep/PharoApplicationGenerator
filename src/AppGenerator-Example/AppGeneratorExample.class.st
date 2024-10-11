@@ -8,7 +8,7 @@ Class {
 { #category : 'example' }
 AppGeneratorExample class >> generateWindowsExample [
 
-	<script: 'self generateWindowsExample'>
+	<script>
 
 	AppGeneratorWindowsGenerator new
 		properties: {
@@ -31,7 +31,7 @@ AppGeneratorExample class >> generateWindowsExample [
 { #category : 'example' }
 AppGeneratorExample class >> generateWindowsExampleInAZip [
 
-	<script: 'self generateWindowsExample'>
+	<script>
 
 	AppGeneratorWindowsGenerator new
 		properties: {

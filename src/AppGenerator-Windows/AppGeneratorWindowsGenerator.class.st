@@ -63,7 +63,7 @@ AppGeneratorWindowsGenerator >> fillWithDefaults [
 	properties at: #LegalCopyright ifAbsentPut: 'My Company Copyright'.
 	
 	properties at: #GeneratedArtifact ifAbsentPut: #installer.
-	
+	properties at: #ZipName ifAbsentPut: [ (properties at: #AppName) , '-' , (properties at: #ShortVersion), '.zip' ]
 	
 ]
 
