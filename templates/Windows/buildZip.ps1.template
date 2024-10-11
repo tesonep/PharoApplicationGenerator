@@ -1,0 +1,9 @@
+Push-Location
+
+if (Test-Path $PWD/{ZipName})\{
+	Remove-Item -Path $PWD/{ZipName} -Force
+}
+
+Compress-Archive  -Path "$PWD\\build\\output\\*" -DestinationPath $PWD/{ZipName} -CompressionLevel "Optimal"
+
+Pop-Location
