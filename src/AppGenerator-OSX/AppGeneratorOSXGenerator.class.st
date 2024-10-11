@@ -1,10 +1,11 @@
 Class {
-	#name : #AppGeneratorOSXGenerator,
-	#superclass : #AppGeneratorAbstractGenerator,
-	#category : #'AppGenerator-OSX'
+	#name : 'AppGeneratorOSXGenerator',
+	#superclass : 'AppGeneratorAbstractGenerator',
+	#category : 'AppGenerator-OSX',
+	#package : 'AppGenerator-OSX'
 }
 
-{ #category : #copying }
+{ #category : 'copying' }
 AppGeneratorOSXGenerator >> copyIconSetIn: appDirectory [ 
 	
 	(appDirectory / 'Contents' / 'Resources') ensureCreateDirectory.
@@ -18,7 +19,7 @@ AppGeneratorOSXGenerator >> copyIconSetIn: appDirectory [
 	
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 AppGeneratorOSXGenerator >> copyInstallerBackground [
 	
 	| dst |
@@ -27,7 +28,13 @@ AppGeneratorOSXGenerator >> copyInstallerBackground [
 	(properties at: #InstallerBackgroundFile) copyTo: dst 
 ]
 
-{ #category : #utilities }
+{ #category : 'external resources' }
+AppGeneratorOSXGenerator >> externalResourceTargetDirectory [
+
+	^ outputDirectory / self appName , '.app' / 'Contents' / 'Resources'
+]
+
+{ #category : 'utilities' }
 AppGeneratorOSXGenerator >> fillWithDefaults [
 	
 	super fillWithDefaults.
@@ -38,7 +45,7 @@ AppGeneratorOSXGenerator >> fillWithDefaults [
 	
 ]
 
-{ #category : #translating }
+{ #category : 'translating' }
 AppGeneratorOSXGenerator >> generate [
 	
 	| appDirectory |
@@ -56,7 +63,7 @@ AppGeneratorOSXGenerator >> generate [
 	self generateBuildScript.
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 AppGeneratorOSXGenerator >> generateBuildScript [
 
 	self
@@ -64,7 +71,7 @@ AppGeneratorOSXGenerator >> generateBuildScript [
 		to: outputDirectory / 'build.sh'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 AppGeneratorOSXGenerator >> generatePListIn: appDirectory [
 
 	(appDirectory / 'Contents') ensureCreateDirectory.
@@ -73,13 +80,13 @@ AppGeneratorOSXGenerator >> generatePListIn: appDirectory [
 		to: appDirectory / 'Contents' / 'Info.plist'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AppGeneratorOSXGenerator >> iconSetFile [
 	
 	^ properties at: #IconSetFile 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 AppGeneratorOSXGenerator >> platformName [
 
 	^ 'Darwin'

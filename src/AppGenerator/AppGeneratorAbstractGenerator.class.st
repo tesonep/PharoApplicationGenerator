@@ -3,7 +3,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'properties',
-		'outputDirectory'
+		'outputDirectory',
+		'externalResources'
 	],
 	#category : 'AppGenerator-Core',
 	#package : 'AppGenerator',
@@ -16,10 +17,60 @@ AppGeneratorAbstractGenerator class >> repositoryLocation [
 	^ (IceRepository repositoryNamed: 'PharoApplicationGenerator') location
 ]
 
+{ #category : 'external resources' }
+AppGeneratorAbstractGenerator >> addExternalDirectory: origin [ 
+	
+	externalResources add: (AppGeneratorFileResource new
+			 generator: self;
+			 origin: origin asFileReference;
+			 beDirectory;
+			 yourself)
+]
+
+{ #category : 'external resources' }
+AppGeneratorAbstractGenerator >> addExternalDirectory: origin destination: destination [
+	
+	externalResources add: (AppGeneratorFileResource new
+			 generator: self;
+			 origin: origin asFileReference;
+			 destination: destination asFileReference;
+			 beDirectory;
+			 yourself)
+]
+
+{ #category : 'external resources' }
+AppGeneratorAbstractGenerator >> addExternalFile: externalFileLocation [
+
+	externalResources add: (AppGeneratorFileResource new
+			 generator: self;
+			 origin: externalFileLocation;
+			 yourself)
+]
+
+{ #category : 'external resources' }
+AppGeneratorAbstractGenerator >> addExternalFile: origin destination: destination [
+
+	externalResources add: (AppGeneratorFileResource new
+			 generator: self;
+			 origin: origin asFileReference;
+			 destination: destination asFileReference;
+			 yourself)
+]
+
 { #category : 'accessing' }
 AppGeneratorAbstractGenerator >> appName [
 	
 	^ properties at: #AppName
+]
+
+{ #category : 'external resources' }
+AppGeneratorAbstractGenerator >> copyExternalResources [
+	
+	externalResources ifEmpty: [ ^ self ].
+
+	self externalResourceTargetDirectory ensureCreateDirectory.
+	
+	externalResources do: [ :anExternalResource | anExternalResource copyToDestination ].
 ]
 
 { #category : 'copying' }
@@ -31,6 +82,12 @@ AppGeneratorAbstractGenerator >> copyTemplate: inputTemplate to: outputFile [
 	outputFile writeStreamDo: [ :s |
 		s truncate.
 		s nextPutAll: generatedContent ]
+]
+
+{ #category : 'external resources' }
+AppGeneratorAbstractGenerator >> externalResourceTargetDirectory [
+
+	^ outputDirectory / 'output'
 ]
 
 { #category : 'utilities' }
@@ -62,7 +119,15 @@ AppGeneratorAbstractGenerator >> generate [
 	self fillWithDefaults.
 
 	outputDirectory ensureCreateDirectory. 
+	self copyExternalResources
 
+]
+
+{ #category : 'initialization' }
+AppGeneratorAbstractGenerator >> initialize [
+
+	super initialize.
+	externalResources := OrderedCollection new
 ]
 
 { #category : 'accessing' }
