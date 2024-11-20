@@ -72,9 +72,9 @@ add_custom_command(
 # Adding a task to copy the image
 add_custom_command(
 	OUTPUT $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/embedded.image
-	COMMAND $\{CMAKE_COMMAND} -E copy $\{BUILD_ImageDir}/$\{BUILD_ImageName} $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/embedded.image
-	COMMAND $\{CMAKE_COMMAND} -E copy $\{BUILD_ImageDir}/$\{BUILD_ChangesName} $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/embedded.changes
-	COMMAND $\{CMAKE_COMMAND} -E copy $\{BUILD_ImageDir}/*.sources $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/
+	COMMAND bash -c "$\{CMAKE_COMMAND} -E copy $\{BUILD_ImageDir}/$\{BUILD_ImageName} $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/embedded.image"
+	COMMAND bash -c "$\{CMAKE_COMMAND} -E copy $\{BUILD_ImageDir}/$\{BUILD_ChangesName} $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/embedded.changes"
+	COMMAND bash -c "$\{CMAKE_COMMAND} -E copy $\{BUILD_ImageDir}/*.sources $\{CMAKE_CURRENT_BINARY_DIR}/build/resources/"
 	WORKING_DIRECTORY $\{CMAKE_CURRENT_BINARY_DIR}/build/resources
 	COMMENT "Copying image to embed")
 
@@ -96,11 +96,11 @@ add_custom_command(
 	OUTPUT  
 		$\{CMAKE_CURRENT_BINARY_DIR}/build/lib/libPharoVMCore.a
     	$\{CMAKE_CURRENT_BINARY_DIR}/build/output/PharoVMCore.dll		
-	COMMAND $\{CMAKE_COMMAND} -E make_directory $\{CMAKE_CURRENT_BINARY_DIR}/build/lib
-	COMMAND $\{CMAKE_COMMAND} -E make_directory $\{CMAKE_CURRENT_BINARY_DIR}/build/output
-	COMMAND $\{CMAKE_COMMAND} -E copy $\{CMAKE_CURRENT_BINARY_DIR}/build/vm/*.dll $\{CMAKE_CURRENT_BINARY_DIR}/build/lib
-	COMMAND $\{CMAKE_COMMAND} -E copy $\{CMAKE_CURRENT_BINARY_DIR}/build/vm/*.dll $\{CMAKE_CURRENT_BINARY_DIR}/build/output
-	COMMAND $\{CMAKE_COMMAND} -E copy $\{CMAKE_CURRENT_BINARY_DIR}/build/vm/*.a $\{CMAKE_CURRENT_BINARY_DIR}/build/lib	
+	COMMAND bash -c "$\{CMAKE_COMMAND} -E make_directory $\{CMAKE_CURRENT_BINARY_DIR}/build/lib"
+	COMMAND bash -c "$\{CMAKE_COMMAND} -E make_directory $\{CMAKE_CURRENT_BINARY_DIR}/build/output"
+	COMMAND bash -c "$\{CMAKE_COMMAND} -E copy $\{CMAKE_CURRENT_BINARY_DIR}/build/vm/*.dll $\{CMAKE_CURRENT_BINARY_DIR}/build/lib"
+	COMMAND bash -c "$\{CMAKE_COMMAND} -E copy $\{CMAKE_CURRENT_BINARY_DIR}/build/vm/*.dll $\{CMAKE_CURRENT_BINARY_DIR}/build/output"
+	COMMAND bash -c "$\{CMAKE_COMMAND} -E copy $\{CMAKE_CURRENT_BINARY_DIR}/build/vm/*.a $\{CMAKE_CURRENT_BINARY_DIR}/build/lib"
 	WORKING_DIRECTORY $\{CMAKE_CURRENT_BINARY_DIR}/build
 	DEPENDS 
 		$\{CMAKE_CURRENT_BINARY_DIR}/build/vm/PharoVMCore.dll
