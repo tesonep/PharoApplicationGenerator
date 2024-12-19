@@ -7,7 +7,7 @@
 
 
 ## Install PharoApplicationGenerator
-First install the application generator into your Pharo image using
+First install the application generator into your [Pharo](https://www.pharo.org) image using
 
 ```smalltalk
 Metacello new
@@ -20,7 +20,7 @@ Metacello new
 
 To install MSYS2 just visit 
 
-[https://www.msys2.org/](https://www.msys2.org/)
+[https://www.msys2.org](https://www.msys2.org)
 
 and download the **installer executable**. As of this writing this is **msys2-x86_64-20241208.exe**. Run the installer with the full admin permisson and finally this opens a small unix like shell window with a bash shell. 
 
@@ -112,9 +112,10 @@ Now additionally in our project structure we would like to add
 		- MKApp.class.st
 		- package.st
   - res
-  	- favicon.ico
+  	- app.ico
   - app
 
+### Some utility methods 
 
 Now implement a class side method *(MyApp class)>>#repositoryLocation*
 
@@ -125,4 +126,87 @@ Now implement a class side method *(MyApp class)>>#repositoryLocation*
 	^ (IceRepository repositoryNamed: 'mykiller-app') location
 ```
 that return the root folder of our project. As the method is annotated with a script pragma you can click on the icon close to the method within the Calypso system browser to verify that the path is correct.
+
+Also add a method 
+
+```Smalltalk
+iconFile
+	<script: 'self repositoryLocation openInOSFileBrowser'>
+
+	^ self repositoryLocation / 'res' / 'app.ico'
+```
+that provides the location of the icon file.
+
+*Tip: you can easily create an appropriate icon file (*.ico) using Favicon generators like [https://favicon.io](https://favicon.io) or [https://www.favicon-generator.org](https://www.favicon-generator.org)* but also one of the free icon editors for windows.
+
+### The definitions
+
+Now we define a method that calls the generator and creates the stubs for us:
+
+```Smalltalk
+generateWindowsExecutableProject
+	<script>
+
+	AppGeneratorWindowsGenerator new
+		properties: {
+			#AppName -> 'KillerApp'.
+			#InfoString -> 'The Killer App'.
+			#BundleIdentifier -> 'org.mycompany.killerap'.
+			#ShortVersion -> '1.0.0'.
+			#DisplayName -> 'Killer App'.
+			
+			#IconFile -> self iconFile.
+			#CompanyName -> 'mycompany.com'.
+			#LegalCopyright -> 'Copyright \251 https://www.mycompany.com 2024\0'.
+			
+			"https://files.pharo.org/vm/pharo-spur64-headless/Windows-x86_64/include/PharoVM-10.3.2-7d07f5d1-Windows-x86_64-include.zip"
+			#VMIncludeZipFile -> 'PharoVM-10.3.2-7d07f5d1-Windows-x86_64-include.zip'.
+			
+			"https://files.pharo.org/vm/pharo-spur64-headless/Windows-x86_64/PharoVM-10.3.2-7d07f5d1-Windows-x86_64-bin.zip"
+			#VMZipFile -> 'PharoVM-10.3.2-7d07f5d1-Windows-x86_64-bin.zip' 
+		} asDictionary;
+		outputDirectory: self repositoryLocation / 'app';
+		generate.
+	(self repositoryLocation / 'app') openInOSFileBrowser 
+```	
+The key value pairs represent properties used to generate the resource file and define some info available from within the executable.
+
+When you run this method by clicking the methods icon in the system browser or by evaluating
+
+```Smalltalk
+MyKillerApp generateWindowsExecutableProject
+```
+
+the project files are created in the app folder. 
+
+### Compiling the final result
+
+Within the already open MSYS2 Unix shell navigate to the app folder. Be aware that this requires Unix style path names and using "/" instead of "\". You should also know that the drive letters of Windows could be found under the root level of the emulated Unix environment. So "C:\" becomes "/C/".
+
+
+#### Example
+
+If you Project and "app" folder is under 
+
+```
+C:\Users\Administrator\Documents\Pharo\images\Pharo13\pharo-local\iceberg\mycompany\mykiller-app\app\
+```
+you have to nagigate using the "cd" (change directory) Unix command into the folder with
+
+```shell
+cd /C/Users/Administrator/Documents/Pharo/images/Pharo13/pharo-local/iceberg/mycompany/mykiller-app\app\
+```
+
+Now run **cmake** command which is processing the generated *CMakeLists.txt* file.
+
+```shell
+cmake .
+```
+and run **ninja** 
+
+```shell
+ninja
+```
+
+to build the final output executable **MyApp.exe** into the folder  found in **\app\build\output''
 
