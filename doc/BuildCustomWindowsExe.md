@@ -11,7 +11,7 @@ Metacello new
 	load
 ```
 
-## Install MSYS
+## Install MSYS and tooling
 
 To install MSYS2 just visit 
 
@@ -60,7 +60,42 @@ gcc -version
 ````
 
 ### Install other packages
+Another package that is required is unzip as this is used to unzip the downloaded zip files for the VM / VM includes
 
 ````Shell
 pacman -S unzip
 ````
+
+Again you can verify if the command is available
+````Shell
+unzip
+````
+
+## Implement custom App definitions
+
+Now we need to define a class that helps us to configure some properties that will be used to generate the output project.
+
+Lets assume we have a Pharo project called **"mykiller-app"** as a *project name* in Iceberg. So lets implement a simple Pharo *class* **MKApp** to host the settings. This class is in the git managed project within the package **"MyKiller-App"**
+
+```Smalltalk
+Object << #MKApp
+	slots: {};
+	package: 'MyKiller-App'
+```	
+Add this package to your project in Iceberg and save it.
+
+This gives a typical Tonel project layout with a standard **src folder** hosting the serialized class file. 
+
+*Important: Historically same projects store their sources directly in the root folder of the project or in a "repo" folder - we would not recommend that. Instead it is better to have a proper project layout.*
+
+Now additionally in our project structure we would like to add an "app" folder where the app is built:
+
+- mykiller-app
+  - src
+    - BaselineOfMyKillerApp
+		- BaselineOfMyKillerApp.class.st
+		- package.st
+	- MyKiller-App
+		- MKApp.class.st
+		- package.st
+  - app
