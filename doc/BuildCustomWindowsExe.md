@@ -1,5 +1,10 @@
 
-# Quick start
+# Build a custom executable for Windows
+
+*The Pharo virtual machine for Windows comes with a Pharo.exe, a PharoConsole.exe and a Pharo.dll together with several shared dynamic link libraries (DLLs). The VM logic is mostly within the Pharo.dll and the Pharo.exe is only a small entry executable. But this EXE comes with the Pharo logo as icon and *
+
+*The PharoApplicationGenerator allows you to generate a cmake project that you can use to build an own custom entry executable. For instance a MyKillerApp.exe with a custom icon for the Windows start menu.*
+
 
 ## Install PharoApplicationGenerator
 First install the application generator into your Pharo image using
@@ -17,7 +22,9 @@ To install MSYS2 just visit
 
 [https://www.msys2.org/](https://www.msys2.org/)
 
-and download the **installer executable**. As of this writing this is *msys2-x86_64-20241208.exe*. Run the installer with admin permisson and finally this opens a shell window. Close it first time.
+and download the **installer executable**. As of this writing this is **msys2-x86_64-20241208.exe**. Run the installer with the full admin permisson and finally this opens a small unix like shell window with a bash shell. 
+
+Running as an admin is necessary to save you from trouble. Close it first time.
 
 Now go to the start menu and enter "MSYS" - you will see that several icons had been created:
 - MSYS UCRT64
@@ -73,6 +80,8 @@ unzip
 
 ## Implement custom App definitions
 
+### A class with generator definitions
+
 Now we need to define a class that helps us to configure some properties that will be used to generate the output project.
 
 Lets assume we have a Pharo project called **"mykiller-app"** as a *project name* in Iceberg. So lets implement a simple Pharo *class* **MKApp** to host the settings. This class is in the git managed project within the package **"MyKiller-App"**
@@ -84,11 +93,15 @@ Object << #MKApp
 ```	
 Add this package to your project in Iceberg and save it.
 
+### Project structure
+
 This gives a typical Tonel project layout with a standard **src folder** hosting the serialized class file. 
 
 *Important: Historically same projects store their sources directly in the root folder of the project or in a "repo" folder - we would not recommend that. Instead it is better to have a proper project layout.*
 
-Now additionally in our project structure we would like to add an "app" folder where the app is built:
+Now additionally in our project structure we would like to add 
+- an "res" folder for the resources such as an icon file and
+- an "app" folder where the app should be generated:
 
 - mykiller-app
   - src
@@ -98,4 +111,18 @@ Now additionally in our project structure we would like to add an "app" folder w
 	- MyKiller-App
 		- MKApp.class.st
 		- package.st
+  - res
+  	- favicon.ico
   - app
+
+
+Now implement a class side method *(MyApp class)>>#repositoryLocation*
+
+```Smalltalk
+  repositoryLocation
+	<script: 'self repositoryLocation inspect'>
+
+	^ (IceRepository repositoryNamed: 'mykiller-app') location
+```
+that return the root folder of our project. As the method is annotated with a script pragma you can click on the icon close to the method within the Calypso system browser to verify that the path is correct.
+
