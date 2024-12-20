@@ -12,6 +12,14 @@ It works in the following way:
 3. Generate scripts and project files required for the target platform.
 4. Execute the build scripts to package the application and generate the installers
 
+Script for step 2:
+```smalltalk
+Metacello new
+    baseline: 'ApplicationGenerator';
+    repository: 'github://tesonep/PharoApplicationGenerator:master/src';
+    load.
+```
+
 # Consideration about the application
 
 This tool it is intended to package any Pharo application. 
@@ -64,6 +72,6 @@ The process uses some external tools, you should have installed:
 
 - A working Pharo
 - XCode
-- Brew
-- ImageMagick from Brew
-- create-dmg from Brew
+- Brew (https://brew.sh/)
+- ImageMagick from Brew (brew install imagemagick)
+- create-dmg from Brew (brew install create-dmg)
