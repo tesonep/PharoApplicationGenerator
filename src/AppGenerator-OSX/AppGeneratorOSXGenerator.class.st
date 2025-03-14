@@ -31,7 +31,8 @@ AppGeneratorOSXGenerator >> copyInstallerBackground [
 { #category : 'external resources' }
 AppGeneratorOSXGenerator >> externalResourceTargetDirectory [
 
-	^ outputDirectory / self appName , '.app' / 'Contents' / 'Resources'
+	^ outputDirectory / (self appName , '.app') / 'Contents'
+	  / 'Resources'
 ]
 
 { #category : 'utilities' }
@@ -71,7 +72,7 @@ AppGeneratorOSXGenerator >> generateBuildScript [
 		to: outputDirectory / 'build.sh'
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'generating' }
 AppGeneratorOSXGenerator >> generatePListIn: appDirectory [
 
 	(appDirectory / 'Contents') ensureCreateDirectory.
