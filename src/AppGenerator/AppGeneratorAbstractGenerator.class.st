@@ -92,7 +92,7 @@ AppGeneratorAbstractGenerator >> externalResourceTargetDirectory [
 
 { #category : 'utilities' }
 AppGeneratorAbstractGenerator >> fillWithDefaults [
-	
+
 	properties at: #AppName ifAbsentPut: 'MyApp'.
 	properties at: #InfoString ifAbsentPut: 'My Test Application'.
 
@@ -101,16 +101,26 @@ AppGeneratorAbstractGenerator >> fillWithDefaults [
 	properties at: #DisplayName ifAbsentPut: 'My App'.
 
 	properties at: #ImageFile ifAbsentPut: Smalltalk imageFile.
-	properties at: #ImageName ifAbsentPut: (properties at: #ImageFile) basename.
-	properties at: #ImageDir ifAbsentPut: (properties at: #ImageFile) resolve parent fullName.
-	properties at: #ChangesName ifAbsentPut: ((properties at: #ImageFile) resolve withExtension: 'changes') basename.
+	properties
+		at: #ImageName
+		ifAbsentPut: (properties at: #ImageFile) basename.
+	properties
+		at: #ImageDir
+		ifAbsentPut: (properties at: #ImageFile) resolve parent fullName.
+	properties
+		at: #ChangesName
+		ifAbsentPut:
+			((properties at: #ImageFile) resolve withExtension: 'changes')
+				basename.
 
 	properties at: #CommandLineHandler ifAbsentPut: 'appGeneratorExample'.
 
-	properties at: #VMIncludeZipFile ifAbsentPut: 'latest10.zip'.	
+	properties at: #VMIncludeZipFile ifAbsentPut: 'latest10.zip'.
 	properties at: #VMZipFile ifAbsentPut: 'latest10.zip'.
-	properties at: #VMType ifAbsentPut: 'headless'
-
+	properties at: #VMType ifAbsentPut: 'headless'.
+	
+	properties at: #Parameters ifAbsentPut: #(  ).
+	self generateParametersString
 ]
 
 { #category : 'translating' }
@@ -121,6 +131,12 @@ AppGeneratorAbstractGenerator >> generate [
 	outputDirectory ensureCreateDirectory. 
 	self copyExternalResources
 
+]
+
+{ #category : 'utilities' }
+AppGeneratorAbstractGenerator >> generateParametersString [
+
+	self shouldBeImplemented.
 ]
 
 { #category : 'initialization' }
