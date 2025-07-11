@@ -47,6 +47,26 @@ AppGeneratorExample class >> generateOSXExampleWithExternalResources [
 ]
 
 { #category : 'example' }
+AppGeneratorExample class >> generateOSXExampleWithParameter [
+
+	<script>
+
+	AppGeneratorOSXGenerator new
+		properties: {
+			#AppName -> 'AppGeneratorExample'.
+			#InfoString -> 'An Example of an App Generator'.
+			#BundleIdentifier -> 'org.pharo.appGeneratorExample'.
+			#ShortVersion -> '1.0.0'.
+			#DisplayName -> 'TestApp'.
+			#CommandLineHandler -> 'appGeneratorExample'.
+			#CompanyName -> 'Pharo Consortium'.
+			#Parameters -> #('--no-default-preferences').
+		} asDictionary;
+		outputDirectory: FileLocator workingDirectory / 'appGeneratorExample' / 'build';
+		generate
+]
+
+{ #category : 'example' }
 AppGeneratorExample class >> generateWindowsExample [
 
 	<script>
