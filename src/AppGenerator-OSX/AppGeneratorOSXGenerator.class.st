@@ -89,12 +89,11 @@ AppGeneratorOSXGenerator >> generateParametersString [
 
 	| stream collection |
 	collection := (properties at: #Parameters) asOrderedCollection.
-	collection add: (properties at: #CommandLineHandler).
-	collection add: '--embedded'.
 
 	stream := WriteStream on: String crlf.
 	collection do: [ :each |
 			stream
+				nextPut: Character tab;
 				nextPut: Character tab;
 				nextPutAll: '<string>';
 				nextPutAll: each asString;
