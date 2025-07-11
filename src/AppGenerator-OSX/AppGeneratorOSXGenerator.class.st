@@ -47,8 +47,6 @@ AppGeneratorOSXGenerator >> fillWithDefaults [
 	properties
 		at: #InstallerBackgroundFile
 		ifAbsentPut: self templateDirectory / 'installer-background.png'.
-	properties at: #Parameters ifAbsentPut: #(  ).
-	self generateParametersString
 ]
 
 { #category : 'translating' }

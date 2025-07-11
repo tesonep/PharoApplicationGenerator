@@ -106,6 +106,21 @@ AppGeneratorWindowsGenerator >> generateInstallerScript [
 		to: outputDirectory / 'buildWindowsPackage.ps1'
 ]
 
+{ #category : 'accessing' }
+AppGeneratorWindowsGenerator >> generateParametersString [
+
+	| stream collection |
+	collection := (properties at: #Parameters) asOrderedCollection.
+
+	stream := WriteStream on: String new.
+	collection do: [ :each |
+			stream
+				nextPutAll: ', "' ;
+				nextPutAll: each asString;
+				nextPutAll: '"'].
+	properties at: #Parameters put: stream contents
+]
+
 { #category : 'generation' }
 AppGeneratorWindowsGenerator >> generateZipScript [
 
