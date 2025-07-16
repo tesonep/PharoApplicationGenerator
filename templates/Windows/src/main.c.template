@@ -17,7 +17,7 @@ VMErrorCode	vm_parameters_init(VMParameters* parameters);
 /*
  * The set of arguments to pass to the image.
  */
-char* args[] = \{"","--headless","embedded.image", "{CommandLineHandler}", "--embedded"};
+char* args[] = \{"","--headless","embedded.image", "{CommandLineHandler}", "--embedded" {Parameters}};
 
 extern FileAccessHandler embeddedFileAccess;
 

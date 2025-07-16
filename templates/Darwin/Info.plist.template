@@ -35,7 +35,7 @@
 	<key>PharoImageFile</key>
 	<string>{ImageName}</string>
 	<key>PharoImageParameters</key>
-	<array>
+	<array>{Parameters}
 		<string>{CommandLineHandler}</string>
 		<string>--embedded</string>
 	</array>
