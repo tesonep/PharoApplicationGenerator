@@ -37,13 +37,16 @@ AppGeneratorOSXGenerator >> externalResourceTargetDirectory [
 
 { #category : 'utilities' }
 AppGeneratorOSXGenerator >> fillWithDefaults [
-	
+
 	super fillWithDefaults.
-	
-	properties at: #BundleIdentifier ifAbsentPut: 'org.pharo.example'.	
-	properties at: #IconSetFile ifAbsentPut: (self templateDirectory / 'icon.icns' ).
-	properties at: #InstallerBackgroundFile ifAbsentPut: (self templateDirectory / 'installer-background.png').
-	
+
+	properties at: #BundleIdentifier ifAbsentPut: 'org.pharo.example'.
+	properties
+		at: #IconSetFile
+		ifAbsentPut: self templateDirectory / 'icon.icns'.
+	properties
+		at: #InstallerBackgroundFile
+		ifAbsentPut: self templateDirectory / 'installer-background.png'.
 ]
 
 { #category : 'translating' }
@@ -79,6 +82,24 @@ AppGeneratorOSXGenerator >> generatePListIn: appDirectory [
 	self
 		copyTemplate: self templateDirectory / 'Info.plist.template'
 		to: appDirectory / 'Contents' / 'Info.plist'
+]
+
+{ #category : 'generating' }
+AppGeneratorOSXGenerator >> generateParametersString [
+
+	| stream collection |
+	collection := (properties at: #Parameters) asOrderedCollection.
+
+	stream := WriteStream on: String crlf.
+	collection do: [ :each |
+			stream
+				nextPut: Character tab;
+				nextPut: Character tab;
+				nextPutAll: '<string>';
+				nextPutAll: each asString;
+				nextPutAll: '</string>';
+				nextPut: Character cr ].
+	properties at: #Parameters put: stream contents
 ]
 
 { #category : 'accessing' }
