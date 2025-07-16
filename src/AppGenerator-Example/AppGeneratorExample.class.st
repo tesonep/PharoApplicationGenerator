@@ -1,3 +1,6 @@
+"
+I am an exemple to show how the app generator is working
+"
 Class {
 	#name : 'AppGeneratorExample',
 	#superclass : 'Object',
