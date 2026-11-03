@@ -12,13 +12,26 @@ It works in the following way:
 3. Generate scripts and project files required for the target platform.
 4. Execute the build scripts to package the application and generate the installers
 
-Script for step 2:
+Script for step 2 for Pharo 13 / Pharo 14:
+
 ```smalltalk
 Metacello new
     baseline: 'ApplicationGenerator';
-    repository: 'github://tesonep/PharoApplicationGenerator:master/src';
+    repository: 'github://tesonep/PharoApplicationGenerator:v1.0.0/src';
     load.
 ```
+
+For Pharo 15
+
+```smalltalk
+Metacello new
+    baseline: 'ApplicationGenerator';
+    repository: 'github://tesonep/PharoApplicationGenerator:v2.0.0/src';
+    load.
+```
+
+Development versions are in dev-p14 and dev-p15 branches
+
 
 # Consideration about the application
 
