@@ -12,7 +12,7 @@ It works in the following way:
 3. Generate scripts and project files required for the target platform.
 4. Execute the build scripts to package the application and generate the installers
 
-Script for step 2 for Pharo 13 / Pharo 14:
+Script for step 2 for Pharo 13:
 
 ```smalltalk
 Metacello new
@@ -21,7 +21,7 @@ Metacello new
     load.
 ```
 
-For Pharo 15
+For Pharo 14:
 
 ```smalltalk
 Metacello new
@@ -30,7 +30,7 @@ Metacello new
     load.
 ```
 
-Development versions are in dev-p14 for supporting P13/P14 and master for P15 branches.
+Development versions are in dev-13 for supporting P13 and master for P14 branches.
 
 We highly recommend using released versions.
 
