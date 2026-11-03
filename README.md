@@ -30,7 +30,9 @@ Metacello new
     load.
 ```
 
-Development versions are in dev-p14 and dev-p15 branches
+Development versions are in dev-p14 for supporting P13/P14 and master for P15 branches.
+
+We highly recommend using released versions.
 
 
 # Consideration about the application
