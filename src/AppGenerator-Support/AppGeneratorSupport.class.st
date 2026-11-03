@@ -3,7 +3,7 @@ Class {
 	#superclass : 'Object',
 	#classVars : [
 		'AfterWindowTitleSetBlock',
-		'ErrorHandler',
+		'AppErrorHandler',
 		'WindowTitle',
 		'WorldIcon'
 	],
@@ -20,30 +20,45 @@ AppGeneratorSupport class >> afterWindowOpenedWithImageFile: imageFile onWindow:
 ]
 
 { #category : 'default actions' }
+AppGeneratorSupport class >> checkSystemErrorHandler [
+
+	| systemErrorHandler |
+	
+	ErrorHandler default class = AppGeneratorSystemErrorHandler ifTrue: [ ^ self ].
+	
+	systemErrorHandler := AppGeneratorSystemErrorHandler new.
+	systemErrorHandler previousHandler: ErrorHandler default.
+	
+	ErrorHandler default: systemErrorHandler
+]
+
+{ #category : 'default actions' }
 AppGeneratorSupport class >> errorHandler [
 
-	^ ErrorHandler ifNil: [ AppGeneratorNullErrorHandler new ]
+	^ AppErrorHandler ifNil: [ AppGeneratorNullErrorHandler new ]
 ]
 
 { #category : 'default actions' }
 AppGeneratorSupport class >> errorHandler: anErrorHandler [
 
-	ErrorHandler := anErrorHandler
+	AppErrorHandler := anErrorHandler.
+	self checkSystemErrorHandler
 ]
 
 { #category : 'testing' }
 AppGeneratorSupport class >> isEmbedded [ 
 
-	^ Smalltalk argumentsInclude: '--embedded'
-		
+	^ Smalltalk arguments includes: '--embedded'
 ]
 
-{ #category : 'default actions' }
+{ #category : 'error handling' }
 AppGeneratorSupport class >> unhandledErrorDefaultAction: anException [
 
-	self isEmbedded ifFalse: [ ^ false ].
-	
-	^ self errorHandler unhandledError: anException.
+	(anException isKindOf: Warning)
+		ifTrue: [  ErrorHandler default handleWarning: anException ]
+		ifFalse: [ ErrorHandler default handleError: anException ].
+
+	^ true
 ]
 
 { #category : 'initialization' }

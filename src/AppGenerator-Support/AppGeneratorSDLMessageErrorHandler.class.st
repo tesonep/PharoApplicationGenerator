@@ -5,7 +5,19 @@ Class {
 	#package : 'AppGenerator-Support'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'error handling' }
+AppGeneratorSDLMessageErrorHandler >> handleWarning: aWarning [
+
+	SDL2
+		showSimpleMessageBox: aWarning messageText
+		title: 'An Warning has occured...' 
+		flags: 16r00000020
+		window: ExternalAddress null.
+			
+	^ true
+]
+
+{ #category : 'error handling' }
 AppGeneratorSDLMessageErrorHandler >> unhandledError: anError [
 
 	SDL2

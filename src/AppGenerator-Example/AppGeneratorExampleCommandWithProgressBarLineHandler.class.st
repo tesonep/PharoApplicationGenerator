@@ -1,29 +1,20 @@
 Class {
 	#name : 'AppGeneratorExampleCommandWithProgressBarLineHandler',
-	#superclass : 'CommandLineHandler',
+	#superclass : 'ClapApplication',
 	#category : 'AppGenerator-Example',
 	#package : 'AppGenerator-Example'
 }
 
 { #category : 'accessing' }
-AppGeneratorExampleCommandWithProgressBarLineHandler class >> commandName [
+AppGeneratorExampleCommandWithProgressBarLineHandler class >> commandSpecification [ 
 
-	^ 'appGeneratorExampleWithProgressBar'
-]
+	<commandline>
 
-{ #category : 'activation' }
-AppGeneratorExampleCommandWithProgressBarLineHandler >> activate [
-
-	0 to: 100 by: 5 do: [ :i |
-		self applicationLoadingProgress: i.
-		0.5 second wait ].
-	
-	OSWindowDriver current startUp: true.
-	
-	AppGeneratorSupport errorHandler: AppGeneratorSDLMessageErrorHandler new.
-	SDL2AthensDrawingExample new open.
-	
-	self applicationLoadingEnded.
+	^ (ClapCommandSpec id: #appGeneratorExampleWithProgressBar)
+		description: 'App Generator Example with ProgressBar';
+		commandClass: self;
+		addFlag: #embedded description: 'If we are running embedded';
+		yourself
 ]
 
 { #category : 'activation' }
@@ -40,4 +31,21 @@ AppGeneratorExampleCommandWithProgressBarLineHandler >> applicationLoadingProgre
 	<primitive: primitiveApplicationLoadingProgress>
 	
 	self primitiveFailed
+]
+
+{ #category : 'execution' }
+AppGeneratorExampleCommandWithProgressBarLineHandler >> execute [
+
+	0 to: 100 by: 5 do: [ :i |
+		self applicationLoadingProgress: i.
+		0.5 second wait ].
+	
+	OSWindowDriver current startUp: true.
+	
+	AppGeneratorSupport errorHandler: AppGeneratorSDLMessageErrorHandler new.
+	SDL2AthensDrawingExample new open.
+	
+	self applicationLoadingEnded.
+	
+	self context doNotObeyExits
 ]

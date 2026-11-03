@@ -9,7 +9,7 @@ SDL2AthensDrawingExample >> redraw [
 		canvas pathTransform translateX: 0 Y: 25.
 		canvas setPaint: Color black.
 		canvas setFont: font.
-		canvas drawString: 'Left-Click to draw, Shift-Click to produce error, RightClick to clear'].
+		canvas drawString: 'Left-Click to draw, Shift-Click to produce error, Ctrl-Click for a warning, RightClick to clear.'].
 	strokes
 		do:
 			[ :stroke |
